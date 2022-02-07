@@ -1,2 +1,3 @@
 dna:
   coincidence-count: 4
+  minimum-coincidences: 2

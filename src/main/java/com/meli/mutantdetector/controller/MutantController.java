@@ -24,9 +24,7 @@ public class MutantController {
     public ResponseEntity<Object> isMutant(@RequestBody DnaRequestDTO dnaRequestDTO){
 
         log.info("Dna Service is starting");
-
         boolean isMutant = this.mutantService.isMutant(dnaRequestDTO.getDna());
-
         log.info("The person is mutant: "+isMutant);
 
         if(!isMutant){
