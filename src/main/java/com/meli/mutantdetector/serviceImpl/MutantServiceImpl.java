@@ -31,6 +31,12 @@ public class MutantServiceImpl implements IMutantService {
     @Autowired
     private DnaAnalysisRepository dnaAnalysisRepository;
 
+
+    /**
+     * validate if DNA corresponds to a human or a mutant
+     * @param dna DNA chain
+     * @return true if is a Mutant or false if is a human
+     * */
     @Override
     public boolean isMutant(List<String> dna) {
         UtilMutant.showMatriz(dna);
@@ -42,6 +48,11 @@ public class MutantServiceImpl implements IMutantService {
         return  isMutant;
     }
 
+    /**
+     * save the result of analyzing the DNA
+     * @param dna DNA chain analyzed
+     * @param isMutant true if is a mutant or not if is a human
+     * */
     private void saveAnalysis(List<String> dna, boolean isMutant) {
         DnaAnalysis dnaAnalysis = new DnaAnalysis();
         dnaAnalysis.setDna(dna.toString());
@@ -49,6 +60,11 @@ public class MutantServiceImpl implements IMutantService {
         this.dnaAnalysisRepository.save(dnaAnalysis);
     }
 
+    /**
+     * validate if DNA chain is well structured
+     * @param dna DNA chain requested
+     * @throws MutantException
+     * */
     @Override
     public void validateDna(List<String> dna) throws MutantException {
 

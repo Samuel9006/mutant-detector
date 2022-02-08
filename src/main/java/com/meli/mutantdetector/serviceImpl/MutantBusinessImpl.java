@@ -20,6 +20,11 @@ public class MutantBusinessImpl implements IMutantBussiness {
     @Value("${dna.minimum-coincidences}")
     private int minimumCoincidences;
 
+    /**
+     * count coincidences of mutant nitrogen base in DNA
+     * @param dna dna chain
+     * @return the count of coincidences
+     * */
     @Override
     public int countOfCoincidences(List<String> dna) {
         int coincidencesInLine = this.findInLine(dna);
@@ -42,7 +47,10 @@ public class MutantBusinessImpl implements IMutantBussiness {
 
 
     /**
-     * Find lines vertical or diagonal
+     *
+     * The DNA chains are iterated seeking to convert it into a matrix and based on it,
+     * find the diagonals and vertical lines in it.
+     * These lines are added to a list to later analyze them already in a straight line
      *
      * @param lines dna lines where you can search secuences
      * @return coincidences count in lines

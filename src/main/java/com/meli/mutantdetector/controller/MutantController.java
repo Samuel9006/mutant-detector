@@ -18,9 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import javax.validation.Valid;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
 
 @Slf4j
 @AllArgsConstructor
@@ -30,6 +28,14 @@ public class MutantController {
 
     private final IMutantService mutantService;
 
+    /**
+     * POST /mutant/ validates if a DNA chain corresponds to a mutant
+     * @param dnaRequestDTO request with DNA chain lines
+     * @param result validation result binding
+     * @return return HTTP OK when DNA corresponds to a mutant
+     * HTTP FORBIDDEN when DNA does not correspond to a mutant
+     * HTTP BAD_REQUEST when DNA strands have errors
+     */
     @PostMapping(produces = "application/json")
     public ResponseEntity<?> isMutant(@Valid @RequestBody DnaRequestDTO dnaRequestDTO, BindingResult result) {
         Map<String, Object> message = new HashMap<>();
