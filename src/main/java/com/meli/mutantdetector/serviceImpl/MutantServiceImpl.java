@@ -1,8 +1,10 @@
-package com.meli.mutantdetector.service;
+package com.meli.mutantdetector.serviceImpl;
 
 import com.meli.mutantdetector.exception.MutantException;
 import com.meli.mutantdetector.model.entity.DnaAnalysis;
 import com.meli.mutantdetector.model.repository.DnaAnalysisRepository;
+import com.meli.mutantdetector.service.IMutantBussiness;
+import com.meli.mutantdetector.service.IMutantService;
 import com.meli.mutantdetector.utils.UtilMutant;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,7 +16,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.function.Predicate;
 
-import static com.meli.mutantdetector.utils.Constants.ERROR_DNA_BAD_ESTRUCTURE_MESSAGE;
+import static com.meli.mutantdetector.utils.Constants.ERROR_DNA_BAD_STRUCTURE_MESSAGE;
 
 @Slf4j
 @Service
@@ -56,7 +58,7 @@ public class MutantServiceImpl implements IMutantService {
 
         badLine.ifPresent(line -> {
             throw MutantException.builder()
-                    .errorMessage(ERROR_DNA_BAD_ESTRUCTURE_MESSAGE)
+                    .errorMessage(ERROR_DNA_BAD_STRUCTURE_MESSAGE)
                     .statusCode(HttpStatus.BAD_REQUEST)
                     .build();
         });

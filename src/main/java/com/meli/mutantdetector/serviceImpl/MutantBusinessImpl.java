@@ -1,5 +1,6 @@
-package com.meli.mutantdetector.service;
+package com.meli.mutantdetector.serviceImpl;
 
+import com.meli.mutantdetector.service.IMutantBussiness;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
@@ -11,7 +12,7 @@ import static com.meli.mutantdetector.utils.Constants.MUTANT_PATTERN;
 
 @Slf4j
 @Component
-public class MutantBusiness implements IMutantBussiness{
+public class MutantBusinessImpl implements IMutantBussiness {
 
     @Value("${dna.coincidence-count}")
     private int coincidenceCount;
