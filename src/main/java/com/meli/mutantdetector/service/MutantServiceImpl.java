@@ -1,14 +1,18 @@
 package com.meli.mutantdetector.service;
 
+import com.meli.mutantdetector.exception.MutantException;
 import com.meli.mutantdetector.utils.UtilMutant;
-import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
+import java.util.function.Predicate;
 
+import static com.meli.mutantdetector.utils.Constants.ERROR_DNA_BAD_ESTRUCTURE_MESSAGE;
 
 @Slf4j
 @Service
@@ -28,7 +32,18 @@ public class MutantServiceImpl implements IMutantService {
     }
 
     @Override
-    public void validateDna(List<String> dna) throws Exception{
+    public void validateDna(List<String> dna) throws MutantException {
+
+        int dnaLength = dna.size();
+        Predicate<String> differentSize = line -> line.length() != dnaLength;
+        Optional<String> badLine = dna.stream().filter(differentSize).findFirst();
+
+        badLine.ifPresent(line -> {
+            throw MutantException.builder()
+                    .errorMessage(ERROR_DNA_BAD_ESTRUCTURE_MESSAGE)
+                    .statusCode(HttpStatus.BAD_REQUEST)
+                    .build();
+        });
 
     }
 }
