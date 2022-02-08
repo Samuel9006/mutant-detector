@@ -36,7 +36,7 @@ public class MutantController {
         boolean isMutant;
 
         if(result.hasErrors()){
-            message.put("errors" , UtilMutant.getErrors(result));
+            message.put("errors", UtilMutant.getErrors(result));
             return new ResponseEntity<>(message, HttpStatus.BAD_REQUEST);
         }
 

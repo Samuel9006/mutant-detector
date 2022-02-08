@@ -1,6 +1,8 @@
 package com.meli.mutantdetector.service;
 
 import com.meli.mutantdetector.exception.MutantException;
+import com.meli.mutantdetector.model.entity.DnaAnalysis;
+import com.meli.mutantdetector.model.repository.DnaAnalysisRepository;
 import com.meli.mutantdetector.utils.UtilMutant;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,11 +26,25 @@ public class MutantServiceImpl implements IMutantService {
     @Autowired
     private IMutantBussiness mutantBussiness;
 
+    @Autowired
+    private DnaAnalysisRepository dnaAnalysisRepository;
+
     @Override
     public boolean isMutant(List<String> dna) {
         UtilMutant.showMatriz(dna);
         int countOfCoincidences = this.mutantBussiness.countOfCoincidences(dna);
-        return  countOfCoincidences >= this.minimumCoincidences;
+        boolean isMutant  = countOfCoincidences >= this.minimumCoincidences;
+
+        this.saveAnalysis(dna, isMutant);
+
+        return  isMutant;
+    }
+
+    private void saveAnalysis(List<String> dna, boolean isMutant) {
+        DnaAnalysis dnaAnalysis = new DnaAnalysis();
+        dnaAnalysis.setDna(dna.toString());
+        dnaAnalysis.setMutant(isMutant);
+        this.dnaAnalysisRepository.save(dnaAnalysis);
     }
 
     @Override
