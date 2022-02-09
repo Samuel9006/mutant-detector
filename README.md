@@ -4,7 +4,7 @@ Detects if a human is a mutant based on an NxN DNA array
 ---
 You can see the application running in the following url:
 
-- http://ec2-34-204-7-206.compute-1.amazonaws.com:8080/swagger-ui/index.html
+- http://mutant-load-balancer-1969090175.us-east-1.elb.amazonaws.com/swagger-ui/index.html
 
 ---
 
@@ -54,7 +54,7 @@ http://localhost:8080/swagger-ui/index.html
 ## Test Services
 From swagger-ui you can test services
 - http://localhost:8080/swagger-ui/index.html `LOCAL`
-- http://ec2-34-204-7-206.compute-1.amazonaws.com:8080/swagger-ui/index.html `PROD`
+- http://mutant-load-balancer-1969090175.us-east-1.elb.amazonaws.com/swagger-ui/index.html `PROD`
 
 ### /mutant/
 * Método: POST
