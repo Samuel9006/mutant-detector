@@ -16,7 +16,7 @@ You can see the application running in the following url:
 
 ---
 
-###set in your local
+### set in your local
 
 clone the repository:
 
@@ -30,18 +30,18 @@ Before building the project make sure to configure the connection with your data
 - replace the word `yourUrl` by your jdbc connection url. Example ***jdbc:postgresql://localhost:5432/mutant*** 
 - replace the word `yourUser` and `yourPass` by your user and password database respectly. 
 
-####build project
+#### build project
 
 ```sh
 $ .\gradlew clean build
 ```
-####Generate the coverage report:
+#### Generate the coverage report:
 ```sh
 $ .\gradlew jacocoTestReport
 ```
 generated report: ***mutant-detector\build\reports\jacoco\test\html\index.html***
 
-####Run
+#### Run
 ```sh
 $ .\gradlew bootRun
 ```
